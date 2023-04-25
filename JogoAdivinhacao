@@ -1,0 +1,44 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+//Indicando a classe do meu game
+class JogoAdivinhacao {
+    //Indicando para mim o numero secreto e a quantidade de tentativas do usuário.
+    private:
+    int numeroSecreto;
+    int tentativas;
+    //Construtor personalizado que indica que o numero secreto pode ser de 0 a 100, e o contator de tentativas
+    public:
+    JogoAdivinhacao() {
+    srand(time(0));
+    numeroSecreto = rand() % 100 + 1;
+    tentativas = 0;
+}
+//Ação para jogar
+void jogar() {
+    //Indicação para meu usuário dar um palpite, e utilizando o "do" para repetir o jogo.
+    int palpite;
+    do {
+        cout <<"Digite um número entre 1 e 100: ";
+        cin >> palpite;
+        tentativas++;
+        if (palpite > numeroSecreto) {
+            cout << "O número secreto é menor!" << endl;
+        } else if (palpite < numeroSecreto) {
+            cout << "O número secreto é maior!" << endl;
+        } else {
+            cout << "Parabéns, você acertou o número em "
+            << tentativas << " tentativas!" << endl;
+        }
+        //Usando while para poder repetir meu jogo assim que acabar.
+    }while (palpite != numeroSecreto);
+}
+};
+//Começando meu programa
+int main() {
+    JogoAdivinhacao jogo;
+    jogo.jogar();
+    return 0;
+
+}
